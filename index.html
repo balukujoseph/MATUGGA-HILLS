@@ -665,48 +665,8 @@ leader-card p {
         <h4>OUR SCHOOL GALLERY WITH LATEST PICTURES</h4>
     
         <div class="gallery-grid">
-            <?php
-            $directory = "matugga pics/"; 
-            $images = glob($directory . "*.{jpg,jpeg,png,gif}", GLOB_BRACE);
-        
-            if ($images) {
-                shuffle($images);
             
-                // Separate the first 12 images from the rest
-                $initial_images = array_slice($images, 0, 12);
-                $remaining_images = array_slice($images, 12);
-            
-                // 1. Display the first 12 images (Always visible)
-                foreach($initial_images as $image) {
-                    echo '
-                    <div class="gallery-item">
-                        <img src="'.$image.'" alt="School Image">
-                    
-                    </div>';
-                }
-            
-                // 2. Display the remaining images (Hidden initially)
-                if (!empty($remaining_images)) {
-                    foreach($remaining_images as $image) {
-                        echo '
-                        <div class="gallery-item hidden-gallery-item" style="display: none;">
-                            <img src="'.$image.'" alt="School Image">
-                        
-                        </div>';
-                    }
-                }
-            } else {
-                echo "<p>No images found in the gallery folder.</p>";
-            }
-            ?>
         </div>
-
-        <!-- View More Button (Only shows if there are more than 12 images) -->
-        <?php if ($images && count($images) > 12): ?>
-            <div class="gallery-btn-container" style="text-align: center; margin-top: 30px;">
-                <button id="viewMoreBtn" class="cta-button">View More Photos</button>
-            </div>
-        <?php endif; ?>
     </section>
     
     <section class="section">
