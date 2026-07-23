@@ -1,408 +1,761 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About us</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Matugga Hills Secondary School</title>
+<meta name="description" content="Matugga Hills Secondary School — building excellence since 2010. Our story, our milestones, our people.">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Fonts: Fraunces (display serif, institutional gravitas) + Inter (body/utility) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon-950:#003d80;
+    --maroon-900:#004c99;
+    --maroon-800:#0066cc;
+    --gold-600:#e09a24;
+    --gold-400:#ffcf70;
+    --cream-100:#f4f7fb;
+    --cream-200:#e8f0fa;
+    --ink-900:#1e2b3c;
+    --ink-700:#526275;
+    --line:#d9e3ef;
+    --radius:4px;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:var(--sans);
+    color:var(--ink-900);
+    background:var(--cream-100);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  a:focus-visible, button:focus-visible, .btn:focus-visible, summary:focus-visible{
+    outline:3px solid var(--gold-600);
+    outline-offset:3px;
+  }
+
+  h1,h2,h3,.display-font{
+    font-family:var(--serif);
+    color:var(--maroon-950);
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--gold-600);
+  }
+
+  /* ===== Navbar ===== */
+  .navbar-brand-wrap{
+    display:flex;
+    align-items:center;
+    gap:.65rem;
+  }
+  .brand-mark{
+    width:38px;height:38px;
+    border-radius:50%;
+    background:linear-gradient(155deg, var(--maroon-800), var(--maroon-950));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold-400);
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:1rem;
+    flex-shrink:0;
+  }
+  .navbar-mhss{
+    background:rgba(250,246,238,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar-mhss .nav-link{
+    font-weight:600;
+    font-size:.92rem;
+    color:var(--ink-700);
+  }
+  .navbar-mhss .nav-link:hover, .navbar-mhss .nav-link.active{
+    color:var(--maroon-900);
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(1100px 500px at 85% -10%, rgba(184,145,46,0.16), transparent 60%),
+      linear-gradient(180deg, var(--maroon-950) 0%, var(--maroon-900) 100%);
+    color:var(--cream-100);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(115deg, rgba(217,180,92,0.05) 0 1px, transparent 1px 90px);
+    pointer-events:none;
+  }
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    border:1px solid rgba(217,180,92,0.45);
+    color:var(--gold-400);
+    font-size:.75rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    padding:.4rem .9rem;
+    border-radius:100px;
+  }
+  .hero h1{
+    color:#fff;
+    font-weight:600;
+    font-size:clamp(2.3rem, 4.6vw, 3.6rem);
+    line-height:1.08;
+  }
+  .hero .lede{
+    color:rgba(250,246,238,0.82);
+    font-size:1.15rem;
+    max-width:44ch;
+  }
+  .hero-motto{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.2rem;
+    color:var(--gold-400);
+    border-left:2px solid var(--gold-600);
+    padding-left:1rem;
+  }
+  .stat-strip{
+    border-top:1px solid rgba(250,246,238,0.14);
+    background:rgba(0,0,0,0.14);
+  }
+  .stat-item{
+    padding:1.6rem 1rem;
+    text-align:center;
+    border-right:1px solid rgba(250,246,238,0.12);
+  }
+  .stat-item:last-child{border-right:none;}
+  .stat-num{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:1.9rem;
+    color:var(--gold-400);
+    display:block;
+  }
+  .stat-label{
+    font-size:.76rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:rgba(250,246,238,0.68);
+  }
+
+  /* ===== Section shell ===== */
+  section.block{ padding:5rem 0; }
+  .section-head{ max-width:60ch; margin-bottom:2.75rem; }
+  .rule{
+    width:56px; height:3px;
+    background:var(--gold-600);
+    border-radius:2px;
+    margin:.75rem 0 1.25rem;
+  }
+
+  /* ===== Our Story ===== */
+  .story-frame{
+    position:relative;
+    border-radius:var(--radius);
+    overflow:hidden;
+    aspect-ratio:4/5;
+    background:linear-gradient(160deg, var(--maroon-900), var(--maroon-950));
+    display:flex; align-items:flex-end;
+    box-shadow: 0 24px 48px -20px rgba(61,0,4,0.45);
+  }
+  .story-frame img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+  .story-frame .frame-caption{
+    position:relative; z-index:2;
+    color:var(--cream-100);
+    padding:1.5rem;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:.95rem;
+    background:linear-gradient(0deg, rgba(0,0,0,0.55), transparent);
+    width:100%;
+  }
+  .founder-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:4px solid var(--maroon-900);
+    border-radius:var(--radius);
+    padding:1.4rem 1.6rem;
+  }
+
+  /* ===== Timeline (Growth & Milestones) — the signature element ===== */
+  .ledger{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:2.5rem clamp(1rem,4vw,3rem);
+  }
+  .ledger-line{
+    position:relative;
+    padding-left:2.6rem;
+  }
+  .ledger-line::before{
+    content:"";
+    position:absolute; left:9px; top:6px; bottom:6px;
+    width:2px;
+    background: repeating-linear-gradient(180deg, var(--gold-600) 0 6px, transparent 6px 12px);
+  }
+  .ledger-entry{
+    position:relative;
+    padding-bottom:2.4rem;
+  }
+  .ledger-entry:last-child{ padding-bottom:0; }
+  .ledger-entry::before{
+    content:"";
+    position:absolute;
+    left:-2.6rem;
+    top:.35rem;
+    width:20px; height:20px;
+    background:var(--cream-100);
+    border:2px solid var(--maroon-900);
+    border-radius:50%;
+  }
+  .ledger-entry.is-exam::before{ background:var(--gold-600); border-color:var(--gold-600); }
+  .ledger-year{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:1.5rem;
+    color:var(--maroon-900);
+    margin-bottom:.25rem;
+  }
+  .ledger-entry p{ margin-bottom:.4rem; color:var(--ink-700); }
+  .tag-pill{
+    display:inline-block;
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:var(--cream-200);
+    color:var(--maroon-900);
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:.15rem .65rem;
+    margin-right:.4rem;
+  }
+
+  /* ===== Staff ===== */
+  .staff-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.6rem;
+    height:100%;
+    transition:box-shadow .2s ease, transform .2s ease;
+  }
+  .staff-card:hover{
+    box-shadow:0 16px 32px -18px rgba(61,0,4,0.28);
+    transform:translateY(-3px);
+  }
+  .staff-avatar{
+    width:46px; height:46px;
+    border-radius:50%;
+    background:var(--cream-200);
+    color:var(--maroon-900);
+    font-family:var(--serif);
+    font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .staff-role{
+    font-size:.78rem;
+    font-weight:700;
+    color:var(--gold-600);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+  .staff-since{
+    font-size:.78rem;
+    color:var(--ink-700);
+    opacity:.75;
+  }
+
+  /* ===== Mission / motto close ===== */
+  .motto-block{
+    background:
+      radial-gradient(900px 400px at 15% 0%, rgba(184,145,46,0.14), transparent 60%),
+      var(--maroon-950);
+    color:var(--cream-100);
+    border-radius:8px;
+    padding:clamp(2.5rem,6vw,4.5rem);
+  }
+  .motto-block blockquote{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:clamp(1.5rem,3vw,2.1rem);
+    color:var(--gold-400);
+    max-width:22ch;
+  }
+
+  /* ===== Read full history toggle ===== */
+  .history-toggle{
+    background:var(--maroon-900);
+    border:none;
+    color:#fff;
+    font-weight:600;
+    padding:.75rem 1.6rem;
+    border-radius:100px;
+    transition:background .2s ease;
+  }
+  .history-toggle:hover{ background:var(--maroon-950); color:#fff; }
+  .history-toggle .bi{ transition:transform .2s ease; }
+  .history-toggle[aria-expanded="true"] .bi{ transform:rotate(180deg); }
+
+  footer{
+    background:var(--maroon-950);
+    color:rgba(250,246,238,0.65);
+    font-size:.88rem;
+  }
+  footer a{ color:var(--cream-100); text-decoration:none; }
+  footer a:hover{ color:var(--gold-400); }
+
+  /* Custom layout utilities replacing the Bootstrap classes used in this page. */
+  .container{width:min(1100px, 90%); margin:0 auto;}
+  .row{display:flex; flex-wrap:wrap; margin-left:-.75rem; margin-right:-.75rem;}
+  .row.g-0{gap:0;}
+  [class^="col-"], [class*=" col-"]{width:100%; padding-left:.75rem; padding-right:.75rem;}
+  .d-flex{display:flex;}
+  .flex-column{flex-direction:column;}
+  .align-items-center{align-items:center;}
+  .justify-content-between{justify-content:space-between;}
+  .ms-auto{margin-left:auto;}
+  .mx-auto{margin-left:auto; margin-right:auto;}
+  .text-center{text-align:center;}
+  .text-secondary{color:var(--ink-700)!important;}
+  .text-warning{color:var(--gold-600)!important;}
+  .lh-sm{line-height:1.15;}
+  .fw-bold{font-weight:700;}
+  .small{font-size:.9rem;}
+  .h1{font-size:clamp(2rem, 4vw, 3rem);}
+  .h6{font-size:1rem;}
+  .col-6{width:50%;}
+  .order-lg-1, .order-lg-2{order:0;}
+  .d-block{display:block;}
+  .g-4{gap:1.5rem;}
+  .g-5{gap:3rem;}
+  .gap-2{gap:.5rem;}
+  .gap-3{gap:1rem;}
+  .py-3{padding-top:1rem; padding-bottom:1rem;}
+  .py-4{padding-top:1.5rem; padding-bottom:1.5rem;}
+  .py-5{padding-top:3rem; padding-bottom:3rem;}
+  .py-lg-6{padding-top:5rem; padding-bottom:5rem;}
+  .mt-3{margin-top:1rem;}
+  .mt-4{margin-top:1.5rem;}
+  .mb-0{margin-bottom:0!important;}
+  .mb-2{margin-bottom:.5rem!important;}
+  .mb-3{margin-bottom:1rem!important;}
+  .mb-4{margin-bottom:1.5rem!important;}
+
+  .navbar-toggler{display:none;}
+  .navbar-collapse{display:block;}
+  .navbar-nav{display:flex; list-style:none; margin:0; padding:0;}
+  .navbar-brand{color:inherit; text-decoration:none;}
+  .navbar-brand-wrap{min-width:245px;}
+  .navbar-mhss{position:sticky; top:0; z-index:10;}
+  .navbar-mhss > .container{display:flex; align-items:center; gap:1.5rem;}
+  .navbar-collapse{flex:1;}
+  .navbar-nav{justify-content:flex-end; gap:1.25rem;}
+  .bi{display:inline-block; font-style:normal;}
+  .bi-mortarboard-fill::before{content:"Education";}
+  .bi-building::before{content:"Campus";}
+  .bi-quote::before{content:"\201C";}
+  .bi-chevron-down::before{content:"v";}
+
+  @media (min-width:768px){
+    .col-md-6{width:50%;}
+  }
+
+  @media (min-width:992px){
+    .col-lg-4{width:33.333333%;}
+    .col-lg-5{width:41.666667%;}
+    .col-lg-7{width:58.333333%;}
+    .col-lg-8{width:66.666667%;}
+    .order-lg-1{order:1;}
+    .order-lg-2{order:2;}
+    .text-lg-end{text-align:right;}
+  }
+
+  @media (max-width:767.98px){
+    .navbar-mhss > .container{flex-wrap:wrap; gap:.75rem 1rem;}
+    .navbar-brand-wrap{min-width:0;}
+    .navbar-toggler{display:block; background:transparent; border:1px solid var(--line); padding:.55rem .7rem;}
+    .navbar-toggler-icon{display:block; width:1.25rem; height:.15rem; background:var(--maroon-950); position:relative;}
+    .navbar-toggler-icon::before, .navbar-toggler-icon::after{content:""; position:absolute; left:0; width:1.25rem; height:.15rem; background:var(--maroon-950);}
+    .navbar-toggler-icon::before{top:-.4rem;}
+    .navbar-toggler-icon::after{top:.4rem;}
+    .navbar-collapse{width:100%; flex-basis:100%;}
+    .navbar-nav{flex-direction:column; gap:.25rem; padding-top:1rem;}
+    .navbar-nav .nav-link{display:block; padding:.4rem 0;}
+    .py-lg-6{padding-top:3rem; padding-bottom:3rem;}
+    .text-center.text-md-start{text-align:center;}
+  }
+
+  @media (max-width:767.98px){
+    .stat-item{ border-right:none; border-bottom:1px solid rgba(250,246,238,0.12); }
+    .stat-item:last-child{ border-bottom:none; }
+  }
+</style>
 </head>
 <body>
-   <section class="about-section">
 
-    <div class="about-title">
-        <h1>About Matugga Hills Secondary School</h1>
-        <p class="subtitle">Building Excellence Since 2010</p>
+<!-- ===== Navbar ===== -->
+<nav class="navbar navbar-expand-md navbar-mhss sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand navbar-brand-wrap" href="#top">
+      <span class="brand-mark">MH</span>
+      <span class="d-flex flex-column lh-sm">
+        <span class="fw-bold" style="font-family:var(--serif); color:var(--maroon-950); font-size:1.05rem;">Matugga Hills</span>
+        <span style="font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-600); font-weight:700;">Secondary School</span>
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto gap-md-2">
+        <li class="nav-item"><a class="nav-link active" href="#story">Our Story</a></li>
+        <li class="nav-item"><a class="nav-link" href="#milestones">Milestones</a></li>
+        <li class="nav-item"><a class="nav-link" href="#staff">Our People</a></li>
+        <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero" id="top">
+  <div class="container py-5 py-lg-6">
+    <div class="row align-items-center py-4 py-lg-5">
+      <div class="col-lg-8">
+        <span class="hero-badge"><i class="bi bi-mortarboard-fill"></i> Founded 2nd February 2010</span>
+        <h1 class="mt-4 mb-3">Building excellence since 2010, one little thing at a time.</h1>
+        <p class="lede mb-4">Matugga Hills Secondary School — formerly Hillstone Matugga Secondary School — has grown from a rented compound of 100 students into a fully accredited UCE and UACE examination centre.</p>
+        <p class="hero-motto mb-0">&ldquo;It&rsquo;s a little thing that matters.&rdquo;</p>
+      </div>
+    </div>
+  </div>
+  <div class="stat-strip">
+    <div class="container">
+      <div class="row g-0">
+        <div class="col-6 col-md-3 stat-item">
+          <span class="stat-num">2010</span>
+          <span class="stat-label">Year Founded</span>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <span class="stat-num">600+</span>
+          <span class="stat-label">Students Enrolled</span>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <span class="stat-num">U4036</span>
+          <span class="stat-label">UCE &amp; UACE Centre No.</span>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <span class="stat-num">15+ yrs</span>
+          <span class="stat-label">Of Continuous Service</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Our Story ===== -->
+<section class="block" id="story">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5 order-lg-2">
+        <div class="story-frame">
+          <img src="images/about-school.jpg" alt="Matugga Hills Secondary School campus"
+               onerror="this.style.display='none'; this.parentElement.querySelector('.frame-fallback').style.display='flex';">
+          <div class="frame-fallback" style="display:none; position:absolute; inset:0; align-items:center; justify-content:center; flex-direction:column; color:var(--gold-400); text-align:center; padding:2rem;">
+            <i class="bi bi-building" style="font-size:2.5rem;"></i>
+            <p class="mt-3 mb-0" style="font-family:var(--serif); font-style:italic; font-size:1rem; color:rgba(250,246,238,0.75);">Matugga Hills Secondary School campus</p>
+          </div>
+          <div class="frame-caption">Our current campus — home since 2017</div>
+        </div>
+      </div>
+      <div class="col-lg-7 order-lg-1">
+        <div class="section-head">
+          <span class="eyebrow">Our Story</span>
+          <div class="rule"></div>
+          <h2 class="h1">Two founders' visions, one enduring name</h2>
+        </div>
+        <p>Matugga Hills Secondary School was founded on <strong>2nd February 2010</strong> under the name <strong>Hillstone Matugga Secondary School</strong>. The school later changed its name to Matugga Hills Secondary School to clearly reflect its location and identity within the community.</p>
+        <p class="mb-4">It was established by five committed founders under the leadership of <strong>Mr. Arinaitwe Kenneth</strong>, who later changed his career to banking but continues to serve as the school's Managing Director with dedication to this day.</p>
+        <div class="founder-card">
+          <p class="mb-0"><i class="bi bi-quote text-warning me-1"></i> The school began operations in rented premises with a few small classrooms — opening with <strong>100 students</strong> from Senior One to Senior Six, supported by <strong>13 dedicated teachers</strong>.</p>
+        </div>
+        <button class="history-toggle mt-4" type="button" aria-expanded="false" aria-controls="fullHistory">
+          Read our full history <i class="bi bi-chevron-down ms-1"></i>
+        </button>
+
+        <div class="collapse mt-4" id="fullHistory" hidden>
+          <p>Despite operating in modest facilities, the staff remained committed to providing quality education. The first Headteacher, <strong>Mr. Kato Edward</strong>, was appointed in 2010. Having already spent three years in the teaching profession before joining the school, he has continued to serve faithfully as the school's Headteacher.</p>
+          <p>Although the school did not initially have its own UNEB examination centre, students consistently achieved excellent academic results while sitting their examinations at other registered schools. In its second year, the best UCE candidate scored <strong>17 aggregates</strong>, while the best UACE candidate obtained <strong>22 points</strong>.</p>
+          <p class="mb-0">Today, Matugga Hills Secondary School continues to grow as a centre of academic excellence, discipline and character development — remaining committed to nurturing responsible, competent and morally upright citizens.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Milestones ===== -->
+<section class="block" style="background:var(--cream-200);" id="milestones">
+  <div class="container">
+    <div class="section-head mx-auto text-center">
+      <span class="eyebrow d-block">Growth &amp; Milestones</span>
+      <div class="rule mx-auto"></div>
+      <h2 class="h1">A record of steady, disciplined growth</h2>
     </div>
 
-    <div class="about-content">
+    <div class="ledger">
+      <div class="ledger-line">
 
-        <div class="intro">
-
-            <div class="about-image">
-                <img src="images/about-school.jpg" alt="Matugga Hills Secondary School">
-            </div>
-
-            <div class="about-text">
-
-                <h2>Our Story</h2>
-
-                <p>
-                    Matugga Hills Secondary School was founded on <strong>2nd February 2010</strong>
-                    under the name <strong>Hillstone Matugga Secondary School</strong>.
-                </p>
-
-                <p>
-                    The school later changed its name to
-                    <strong>Matugga Hills Secondary School</strong>
-                    to clearly reflect its location and identity within the community.
-                </p>
-
-                <p>
-                    The school was established by five committed founders under the
-                    leadership of <strong>Mr. Arinaitwe Kenneth</strong>,
-                    who later changed his career to banking but continues to serve as
-                    the Managing Director of the school with dedication upto date.
-                </p>
-
-            </div>
-
+        <div class="ledger-entry">
+          <div class="ledger-year">2017</div>
+          <span class="tag-pill">Campus</span>
+          <p>The school relocated from rented premises to its current, larger and more conducive campus. Enrolment had reduced to <strong>82 students</strong> at the time, but through discipline, improved academic performance and good management, it steadily increased to <strong>over 600 students</strong>.</p>
         </div>
 
-        <details class="about-details">
+        <div class="ledger-entry is-exam">
+          <div class="ledger-year">2023</div>
+          <span class="tag-pill">Accreditation</span>
+          <p>Granted its own <strong>UCE Examination Centre (U4036)</strong>.</p>
+        </div>
 
-            <summary>📖 Read Our Full History</summary>
+        <div class="ledger-entry is-exam">
+          <div class="ledger-year">2024</div>
+          <span class="tag-pill">Accreditation</span>
+          <p>Granted its own <strong>UACE Examination Centre (U4036)</strong>.</p>
+        </div>
 
-            <div class="history">
+        <div class="ledger-entry is-exam">
+          <div class="ledger-year">2025</div>
+          <span class="tag-pill">Results</span>
+          <p>One candidate scored <strong>9 As</strong> in UCE, while another obtained <strong>20 points</strong> in UACE.</p>
+        </div>
 
-                <h2>Our Humble Beginning</h2>
-
-                <p>
-                    The school began operations in rented premises with a few small classrooms.
-                    It opened with 100 students, offering classes from Senior One to Senior Six,
-                    and was supported by 13 dedicated teachers.
-                </p>
-
-                <p>
-                    Despite operating in modest facilities, the staff remained committed
-                    to providing quality education.
-                </p>
-
-                <p>
-                    The first Headteacher,
-                    <strong>Mr. Kato Edward</strong>,
-                    was appointed in 2010.
-                    Having already spent three years in the teaching profession before joining
-                    the school, he has continued to serve faithfully as the school's Headteacher.
-                </p>
-
-                <p>
-                    Although the school did not initially have its own UNEB Examination Centre,
-                    students consistently achieved excellent academic results while sitting
-                    their examinations at other registered schools.
-                </p>
-
-                <p>
-                    In its second year, the best UCE candidate scored
-                    <strong>17 aggregates</strong>,
-                    while the best UACE candidate obtained
-                    <strong>22 points.</strong>
-                </p>
-
-                <h2>Growth & Milestones</h2>
-
-                <div class="timeline">
-
-                    <div class="timeline-item">
-                        <h3>2017</h3>
-
-                        <p>
-                            The school relocated from rented premises to its current,
-                            larger and more conducive campus.
-                        </p>
-
-                        <p>
-                            At that time enrolment had reduced to
-                            <strong>82 students</strong>,
-                            but through discipline, improved academic performance
-                            and good management, enrolment steadily increased to
-                            <strong>over 600 students</strong>.
-                        </p>
-
-                    </div>
-
-                    <div class="timeline-item">
-
-                        <h3>2023</h3>
-
-                        <p>
-                            Granted its own
-                            <strong>UCE Examination Centre (U4036).</strong>
-                        </p>
-
-                    </div>
-
-                    <div class="timeline-item">
-
-                        <h3>2024</h3>
-
-                        <p>
-                            Granted its own
-                            <strong>UACE Examination Centre (U4036).</strong>
-                        </p>
-
-                    </div>
-
-                    <div class="timeline-item">
-
-                        <h3>2025</h3>
-
-                        <p>
-                            One candidate scored
-                            <strong>9As</strong>
-                            in UCE while another obtained
-                            <strong>20 points</strong>
-                            in UACE.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <h2>Our Longest Serving Staff</h2>
-
-                <div class="staff-grid">
-
-                   <div class="staff-card">
-
-    <h3>Madam Nabayozi Sumayya</h3>
-
-    <span class="year">Joined in 2010</span>
-
-    <p>
-        Madam Nabayozi Sumayya joined the school in 2010 as the Bursar
-        and continues to serve in that role.
-    </p>
-
-    <p>
-        She has also served in various capacities including
-        Teacher in Charge of Welfare with continuous dedication
-        and hard work.
-    </p>
-
-</div>
-
-                   <div class="staff-card">
-
-    <h3>Mr. Lubuulwa Stephen</h3>
-
-    <span class="year">Joined in 2012</span>
-
-    <p>
-        Mr. Lubuulwa Stephen joined the school in 2012 as a teacher.
-    </p>
-
-    <p>
-        He was promoted to Assistant Director of Studies in 2014,
-        became Director of Studies in 2016,
-        and in 2025 was appointed Deputy Headteacher,
-        a position he continues to hold.
-    </p>
-
-</div>
-
-                   <div class="staff-card">
-
-    <h3>Madam Nabaggala Harriet</h3>
-
-    <span class="year">Joined in 2014</span>
-
-    <p>
-        Madam Nabaggala Harriet joined the school in 2014.
-    </p>
-
-    <p>
-        Over the years she has served as Head of Department,
-        Matron, and currently serves as School Secretary and
-        Chairperson of the Electoral Commission at
-        Matugga Hills Secondary School.
-    </p>
-
-</div>
-
-                    <div class="staff-card">
-
-    <div class="staff-header">
-        <h3>Mr. Oguttu Hillary Abangi</h3>
-        <span class="join-year">Joined in 2012</span>
+      </div>
     </div>
-
-    <div class="staff-body">
-
-        <p>
-            <strong>Position:</strong> Assistant Director of Studies
-        </p>
-
-        <p>
-            Mr. Oguttu Hillary Abangi joined Matugga Hills Secondary School in
-            <strong>2012</strong> as a <strong>teacher and warden</strong>.
-        </p>
-
-        <p>
-            Through his dedication, commitment and leadership, he was promoted
-            in <strong>2016</strong> to the position of
-            <strong>Assistant Director of Studies</strong>, a role he continues
-            to serve in today.
-        </p>
-
-    </div>
-
-</div>
-                   <div class="staff-card">
-
-    <div class="staff-header">
-        <h3>Mr. Kasaali Festo</h3>
-        <span class="join-year">Joined in 2011</span>
-    </div>
-
-    <div class="staff-body">
-
-        <p>
-            Mr. Kasaali Festo joined the school in
-            <strong>2011</strong>.
-        </p>
-
-        <p>
-            He has served in various leadership positions
-            within the school.
-        </p>
-
-        <p>
-            He currently serves as the
-            <strong>Director of Studies</strong>.
-        </p>
-
-    </div>
-
-</div>
-
-                    <div class="staff-card">
-
-    <div class="staff-header">
-        <h3>Madam Kalembe Rachael</h3>
-        <span class="join-year">Joined in 2013</span>
-    </div>
-
-    <div class="staff-body">
-
-        <p>
-            Madam Kalembe Rachael joined the school in
-            <strong>2013</strong>.
-        </p>
-
-        <p>
-            She has served in several capacities,
-            including
-            <strong>Senior Woman Teacher</strong>,
-            <strong>Matron</strong>,
-            and
-            <strong>Class Teacher</strong>.
-        </p>
-
-    </div>
-
-</div>
-
-                   <div class="staff-card">
-
-    <div class="staff-header">
-        <h3>Mr. Ssali Cyrus</h3>
-    </div>
-
-    <div class="staff-body">
-
-        <p>
-            Mr. Ssali Cyrus has faithfully served the school
-            in various roles.
-        </p>
-
-        <p>
-            He has also been the
-            <strong>Games Patron</strong>
-            for more than
-            <strong>ten years</strong>.
-        </p>
-
-    </div>
-
-</div>
-
-                   <div class="staff-card">
-
-    <div class="staff-header">
-        <h3>Mr. Sekyanzi Phillip</h3>
-        <span class="join-year">Joined in 2015</span>
-    </div>
-
-    <div class="staff-body">
-
-        <p>
-            Mr. Sekyanzi Phillip joined the school in
-            <strong>2015</strong>
-            as a
-            <strong>Mathematics Teacher</strong>.
-        </p>
-
-        <p>
-            He has also served as a
-            <strong>Class Teacher</strong>
-            and
-            <strong>Head of Department</strong>.
-        </p>
-
-        <p>
-            He continues to serve the school
-            with dedication.
-        </p>
-
-    </div>
-
-</div>
-
-            
-
-    <div class="staff-header">
-        <h3>Musomesa Kavuma Richard</h3>
-        <span class="join-year">Joined in 2010</span>
-    </div>
-
-    <div class="staff-body">
-
-        <p>
-            Musomesa Kavuma has been with the school
-            since its establishment in
-            <strong>2010</strong>.
-        </p>
-
-        <p>
-            He has served in various capacities,
-            including as a
-            <strong>teacher</strong>.
-        </p>
-
-        <p>
-            He currently serves as the
-            <strong>Head of Department – Luganda</strong>.
-        </p>
-
-    </div>
-
-</div>
-
-                <div class="mission">
-
-                    <p>
-                        Today, Matugga Hills Secondary School continues to grow
-                        as a centre of academic excellence, discipline and character
-                        development.
-                    </p>
-
-                    <p>
-                        The school remains committed to nurturing responsible,
-                        competent and morally upright citizens while maintaining
-                        its motto:
-                    </p>
-
-                    <blockquote>
-                        "It's a little thing that matters."
-                    </blockquote>
-
-                </div>
-
-            </div>
-
-        </details>
-
-    </div>
-
+  </div>
 </section>
+
+<!-- ===== Staff ===== -->
+<section class="block" id="staff">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our People</span>
+      <div class="rule"></div>
+      <h2 class="h1">Our longest-serving staff</h2>
+      <p class="text-secondary mb-0">The men and women whose long service has shaped the school's culture and its results.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="staff-card d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="staff-avatar">NS</div>
+            <div>
+              <h3 class="h6 mb-0">Madam Nabayozi Sumayya</h3>
+              <span class="staff-since">Joined 2010</span>
+            </div>
+          </div>
+          <span class="staff-role mb-2">Bursar</span>
+          <p class="small text-secondary mb-0">Joined as Bursar in 2010 and continues to serve in that role. Has also served as Teacher in Charge of Welfare with continuous dedication.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="staff-card d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="staff-avatar">LS</div>
+            <div>
+              <h3 class="h6 mb-0">Mr. Lubuulwa Stephen</h3>
+              <span class="staff-since">Joined 2012</span>
+            </div>
+          </div>
+          <span class="staff-role mb-2">Deputy Headteacher</span>
+          <p class="small text-secondary mb-0">Joined as a teacher in 2012; promoted to Assistant Director of Studies (2014), Director of Studies (2016), and Deputy Headteacher (2025).</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="staff-card d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="staff-avatar">NH</div>
+            <div>
+              <h3 class="h6 mb-0">Madam Nabaggala Harriet</h3>
+              <span class="staff-since">Joined 2014</span>
+            </div>
+          </div>
+          <span class="staff-role mb-2">School Secretary</span>
+          <p class="small text-secondary mb-0">Has served as Head of Department and Matron; currently School Secretary and Chairperson of the Electoral Commission.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="staff-card d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="staff-avatar">OH</div>
+            <div>
+              <h3 class="h6 mb-0">Mr. Oguttu Hillary Abangi</h3>
+              <span class="staff-since">Joined 2012</span>
+            </div>
+          </div>
+          <span class="staff-role mb-2">Assistant Director of Studies</span>
+          <p class="small text-secondary mb-0">Joined as a teacher and warden in 2012; promoted to Assistant Director of Studies in 2016, a role he continues to serve in.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="staff-card d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="staff-avatar">KF</div>
+            <div>
+              <h3 class="h6 mb-0">Mr. Kasaali Festo</h3>
+              <span class="staff-since">Joined 2011</span>
+            </div>
+          </div>
+          <span class="staff-role mb-2">Director of Studies</span>
+          <p class="small text-secondary mb-0">Has served in various leadership positions since 2011 and currently serves as the school's Director of Studies.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="staff-card d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="staff-avatar">KR</div>
+            <div>
+              <h3 class="h6 mb-0">Madam Kalembe Rachael</h3>
+              <span class="staff-since">Joined 2013</span>
+            </div>
+          </div>
+          <span class="staff-role mb-2">Senior Woman Teacher</span>
+          <p class="small text-secondary mb-0">Has served in several capacities including Senior Woman Teacher, Matron, and Class Teacher since joining in 2013.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="staff-card d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="staff-avatar">SC</div>
+            <div>
+              <h3 class="h6 mb-0">Mr. Ssali Cyrus</h3>
+              <span class="staff-since">Long-serving</span>
+            </div>
+          </div>
+          <span class="staff-role mb-2">Games Patron</span>
+          <p class="small text-secondary mb-0">Has faithfully served the school in various roles and has been the Games Patron for more than ten years.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="staff-card d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="staff-avatar">SP</div>
+            <div>
+              <h3 class="h6 mb-0">Mr. Sekyanzi Phillip</h3>
+              <span class="staff-since">Joined 2015</span>
+            </div>
+          </div>
+          <span class="staff-role mb-2">Mathematics Teacher</span>
+          <p class="small text-secondary mb-0">Joined in 2015 as a Mathematics Teacher; has also served as Class Teacher and Head of Department.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="staff-card d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="staff-avatar">KR</div>
+            <div>
+              <h3 class="h6 mb-0">Musomesa Kavuma Richard</h3>
+              <span class="staff-since">Joined 2010</span>
+            </div>
+          </div>
+          <span class="staff-role mb-2">Head of Department – Luganda</span>
+          <p class="small text-secondary mb-0">With the school since its establishment in 2010; currently serves as Head of Department – Luganda.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Mission / Motto ===== -->
+<section class="block" id="mission">
+  <div class="container">
+    <div class="motto-block">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <span class="eyebrow" style="color:var(--gold-400);">Our Motto</span>
+          <blockquote class="mt-3 mb-4">&ldquo;It's a little thing that matters.&rdquo;</blockquote>
+          <p class="mb-0" style="color:rgba(250,246,238,0.82); max-width:56ch;">The school remains committed to nurturing responsible, competent and morally upright citizens, continuing to grow as a centre of academic excellence, discipline and character development.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <a href="#top" class="btn btn-lg" style="background:var(--gold-600); color:var(--maroon-950); font-weight:700; border-radius:100px; padding:.85rem 2rem;">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="py-4">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+    <span>&copy; 2026 Matugga Hills Secondary School. UCE &amp; UACE Examination Centre U4036.</span>
+    <span><a href="#story">Our Story</a> &middot; <a href="#milestones">Milestones</a> &middot; <a href="#staff">Our People</a></span>
+  </div>
+</footer>
+
+<script>
+  const toggleButton = document.querySelector('.history-toggle');
+  const history = document.querySelector('#fullHistory');
+  const navToggle = document.querySelector('.navbar-toggler');
+  const nav = document.querySelector('#navMain');
+
+  toggleButton?.addEventListener('click', () => {
+    const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    toggleButton.setAttribute('aria-expanded', String(!isExpanded));
+    history.hidden = isExpanded;
+  });
+
+  navToggle?.addEventListener('click', () => {
+    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', String(!isExpanded));
+    nav.hidden = isExpanded;
+  });
+
+  if (window.innerWidth < 768 && nav) {
+    nav.hidden = true;
+  }
+</script>
 </body>
 </html>
