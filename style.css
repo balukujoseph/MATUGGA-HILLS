@@ -933,6 +933,16 @@ header p {
     min-height: 296px;
 }
 
+.curriculum-visual__caption {
+    color: #003d80;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    padding: 2px 12px;
+    text-align: center;
+}
+
 .curriculum-visual img {
     display: block;
     height: 100%;
