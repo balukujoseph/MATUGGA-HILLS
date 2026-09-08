@@ -1,5 +1,5 @@
 <?php
-// index.php - All-in-one Admission Form, CSV Tracker, and Receipt Generator for Matugga Hills SS
+// admissions.php - All-in-one Admission Form, CSV Tracker, and Receipt Generator for Matugga Hills SS
 
 $submitted = false;
 // Store the generated application tracking ID for the receipt.
@@ -15,21 +15,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $submitted = true;
 
     // Read and escape the student's general information from the submitted form.
-    $student_name        = htmlspecialchars($_POST['student_name'] ?? '');
-    $dob                 = htmlspecialchars($_POST['dob'] ?? '');
-    $gender              = htmlspecialchars($_POST['gender'] ?? '');
-    $target_class        = htmlspecialchars($_POST['target_class'] ?? '');
-    $prev_school         = htmlspecialchars($_POST['prev_school'] ?? '');
+    $student_name         = htmlspecialchars($_POST['student_name'] ?? '');
+    $dob                  = htmlspecialchars($_POST['dob'] ?? '');
+    $gender               = htmlspecialchars($_POST['gender'] ?? '');
+    $target_class         = htmlspecialchars($_POST['target_class'] ?? '');
+    $prev_school          = htmlspecialchars($_POST['prev_school'] ?? '');
     
-    $parent_name         = htmlspecialchars($_POST['parent_name'] ?? '');
-    $relationship        = htmlspecialchars($_POST['relationship'] ?? '');
-    $primary_phone       = htmlspecialchars($_POST['primary_phone'] ?? '');
-    $alt_phone           = htmlspecialchars($_POST['alt_phone'] ?? '');
-    $email               = htmlspecialchars($_POST['email'] ?? '');
-    $residential_address = htmlspecialchars($_POST['residential_address'] ?? '');
+    $parent_name          = htmlspecialchars($_POST['parent_name'] ?? '');
+    $relationship         = htmlspecialchars($_POST['relationship'] ?? '');
+    $primary_phone        = htmlspecialchars($_POST['primary_phone'] ?? '');
+    $alt_phone            = htmlspecialchars($_POST['alt_phone'] ?? '');
+    $email                = htmlspecialchars($_POST['email'] ?? '');
+    $residential_address  = htmlspecialchars($_POST['residential_address'] ?? '');
 
     // Build one summary of the academic fields for the selected class.
-    $academic_details    = "N/A";
+    $academic_details     = "N/A";
     
     if ($target_class === "Senior One") {
         $ple_agg = htmlspecialchars($_POST['ple_aggregate'] ?? '');
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Generate the application ID and the timestamp used by the tracker and receipt.
-    $app_id          = "MHSS-" . date("Ymd-His");
+    $app_id            = "MHSS-" . date("Ymd-His");
     $submission_date = date("Y-m-d H:i:s");
 
     // Open the CSV tracker in append mode so earlier applications are preserved.
@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Choose the receipt view after submission or the application form before submission. -->
     <?php if ($submitted): ?>
         <!-- ========================================== -->
-        <!-- 2. VIEW: SUCCESS RECEIPT                   -->
+        <!-- 2. VIEW: SUCCESS RECEIPT                  -->
         <!-- ========================================== -->
         <!-- Confirmation banner: shows the successful submission status and tracking ID. -->
         <div class="badge-success">
@@ -353,20 +353,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function toggleAcademicSections() {
     var selectedClass = document.getElementById("target_class").value;
     
-    // Hide all dynamic sections initially
-    document.getElementById("sec_s1").style.display = "none";
-    document.getElementById("sec_s23").style.display = "none";
-    document.getElementById("sec_s5").style.display = "none";
+    // Get all dynamic section containers
+    var secS1 = document.getElementById("sec_s1");
+    var secS23 = document.getElementById("sec_s23");
+    var secS5 = document.getElementById("sec_s5");
 
-    // Reveal specific section based on class selection
+    // Hide sections and disable inputs inside them so validation ignores them
+    secS1.style.display = "none";
+    setContainerInputsDisabled(secS1, true);
+
+    secS23.style.display = "none";
+    setContainerInputsDisabled(secS23, true);
+
+    secS5.style.display = "none";
+    setContainerInputsDisabled(secS5, true);
+
+    // Reveal the correct section and enable its inputs
     if (selectedClass === "Senior One") {
-        document.getElementById("sec_s1").style.display = "block";
+        secS1.style.display = "block";
+        setContainerInputsDisabled(secS1, false);
     } else if (selectedClass === "Senior Two" || selectedClass === "Senior Three") {
-        document.getElementById("sec_s23").style.display = "block";
+        secS23.style.display = "block";
+        setContainerInputsDisabled(secS23, false);
     } else if (selectedClass === "Senior Five") {
-        document.getElementById("sec_s5").style.display = "block";
+        secS5.style.display = "block";
+        setContainerInputsDisabled(secS5, false);
     }
 }
+
+// Helper function to disable/enable inputs inside a container element
+function setContainerInputsDisabled(container, isDisabled) {
+    var inputs = container.querySelectorAll("input, select, textarea");
+    inputs.forEach(function(input) {
+        input.disabled = isDisabled;
+    });
+}
+
+// Run on page load in case of browser form-cache retries
+window.onload = function() {
+    toggleAcademicSections();
+};
 </script>
 
 </body>

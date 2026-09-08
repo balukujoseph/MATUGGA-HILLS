@@ -920,12 +920,39 @@ header p {
     text-transform: uppercase;
 }
 
+.curriculum-visual--gallery {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr;
+    min-height: 620px;
+    padding: 12px;
+}
+
+.curriculum-visual--gallery img {
+    border-radius: 10px;
+    min-height: 296px;
+}
+
+.curriculum-visual__caption {
+    color: #003d80;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    padding: 2px 12px;
+    text-align: center;
+}
+
 .curriculum-visual img {
     display: block;
     height: 100%;
     min-height: 320px;
     object-fit: cover;
     width: 100%;
+}
+
+.curriculum-visual--gallery img {
+    height: 100%;
 }
 
 .curriculum-copy {
@@ -1064,6 +1091,14 @@ header p {
 
     .value-grid article {
         padding: 20px 16px;
+    }
+
+    .curriculum-visual--gallery {
+        min-height: 420px;
+    }
+
+    .curriculum-visual--gallery img {
+        min-height: 196px;
     }
 }
 
