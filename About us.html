@@ -520,15 +520,14 @@
         <div class="founder-card">
           <p class="mb-0"><i class="bi bi-quote text-warning me-1"></i> The school began operations in rented premises with a few small classrooms — opening with <strong>100 students</strong> from Senior One to Senior Six, supported by <strong>13 dedicated teachers</strong>.</p>
         </div>
-        <button class="history-toggle mt-4" type="button" aria-expanded="false" aria-controls="fullHistory">
-          Read our full history <i class="bi bi-chevron-down ms-1"></i>
-        </button>
-
         <div class="collapse mt-4" id="fullHistory" hidden>
           <p>Despite operating in modest facilities, the staff remained committed to providing quality education. The first Headteacher, <strong>Mr. Kato Edward</strong>, was appointed in 2010. Having already spent three years in the teaching profession before joining the school, he has continued to serve faithfully as the school's Headteacher.</p>
           <p>Although the school did not initially have its own UNEB examination centre, students consistently achieved excellent academic results while sitting their examinations at other registered schools. In its second year, the best UCE candidate scored <strong>17 aggregates</strong>, while the best UACE candidate obtained <strong>22 points</strong>.</p>
           <p class="mb-0">Today, Matugga Hills Secondary School continues to grow as a centre of academic excellence, discipline and character development — remaining committed to nurturing responsible, competent and morally upright citizens.</p>
         </div>
+        <button class="history-toggle mt-4" type="button" aria-expanded="false" aria-controls="fullHistory">
+          Read our full history <i class="bi bi-chevron-down ms-1"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -757,6 +756,7 @@
     const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
     toggleButton.setAttribute('aria-expanded', String(!isExpanded));
     history.hidden = isExpanded;
+    toggleButton.childNodes[0].textContent = isExpanded ? 'Read our full history ' : 'Show less ';
   });
 
   navToggle?.addEventListener('click', () => {
