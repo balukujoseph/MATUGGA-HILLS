@@ -1695,3 +1695,49 @@ img {
     transform: scale(1.05);
     filter: brightness(1.08);
 }
+
+/* Add these styles to your style.css file to make the summary cards have a transparent background with blurred styling */
+
+.nav-item {
+    position: relative;
+}
+
+.nav-summary-card {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 280px;
+    padding: 15px;
+    
+    /* Transparent / Glassmorphism background */
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    color: #ffffff; /* Ensures text is bright and legible over background images */
+    text-align: left;
+}
+
+.nav-summary-card h4 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.nav-summary-card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Show card on hover */
+.nav-item:hover .nav-summary-card {
+    display: block;
+}
