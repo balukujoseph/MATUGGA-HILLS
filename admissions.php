@@ -185,14 +185,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Receipt actions: allow printing or starting another application. -->
         <div class="btn-container">
             <button onclick="window.print()" class="btn btn-print">🖨 Print / Save as PDF</button>
-            <a href="index.php" class="btn">⬅ Submit Another Application</a>
+            <a href="admissions.php" class="btn">⬅ Submit Another Application</a>
         </div>
 
     <?php else: ?>
         <!-- ========================================== -->
         <!-- 3. VIEW: APPLICATION FORM                  -->
         <!-- ========================================== -->
-        <form action="index.php" method="POST" enctype="multipart/form-data">
+        <form action="admissions.php" method="POST" enctype="multipart/form-data">
             
             <!-- Student Bio Details -->
             <!-- Student information group: collects identity and previous school details. -->
