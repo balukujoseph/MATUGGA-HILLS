@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Keep all slideshow image paths in one ordered list.
     const heroImages = [
         "assets/images/s6 pic.JPG",
-        "assets/images/join-us1.jpg",
-        "assets/images/join-us2.jpg",
-        "assets/images/join-us3.jpg",
+        "assets/images/mixed  O&A.JPG",
+        "assets/images/opoka teaching.jpg",
+        "assets/images/Volley ball team.JPG",
         "assets/images/students in lab.JPG",
         "assets/images/it lab.JPG"
     ];
