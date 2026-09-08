@@ -25,7 +25,7 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: url("assets/images/budge.jpg") center / min(65vw, 560px) no-repeat;
+    background: url("assets/images/budge.jpg") center / min(65vw, 700px) no-repeat;
     opacity: 0.045;
     pointer-events: none;
     z-index: 0;
